@@ -1,11 +1,7 @@
-import java.util.Arrays;
-
 public class Easy {
     public static  Employee[] employees = new Employee[10];
-
     public static void main(String[] args) {
         System.out.println("Книга сотрудников. Базовый уровень.");
-
         Employee pers1= new Employee("Иван", "Иванович","Иванов",1,15000) ;
         Employee pers2= new Employee("Петр", "Петрович","Петров",2,16000) ;
         Employee pers3= new Employee("Сидор", "Сидорович","Сидоров",4,17000) ;
@@ -28,38 +24,30 @@ public class Easy {
         employees[8] = pers9;
         employees[9] = pers10;
 
-
-        Arrays.stream(employees).forEach(System.out::println);
+        printEmployee();
         System.out.println("Максимальная зарплата :  " +employeeMaxSalary());
         System.out.println("Минимальная зарплата : " + employeeMinSalary());
         System.out.println("Суммарная зарплата : " + calculateTotalSalary());
         System.out.println("Средняя зарплата : " + calculateAverageSalary());
-
-
-
-//        Employee[] pers = Arrays.copyOf(employees, 10);
-//        Arrays.stream(pers).forEach(System.out::println);
-//        //System.out.println(pers.length);
-
-
+        printList();
     }
-    public static void printEmployee(){
+    private static void printEmployee(){
         for (Employee employee : employees) {
             System.out.println(employee);
         }
     }
-    public static int calculateTotalSalary( ){
+    private static int calculateTotalSalary( ){
         int sum = 0;
         for (Employee employee : employees){
             sum += employee.getSalary();
         }
         return sum;
     }
-    public static int calculateAverageSalary() {
-        return calculateTotalSalary() / employees.length;
+    private static double calculateAverageSalary() {
+        return calculateTotalSalary() / (double) employees.length;
     }
 
-    public static Employee employeeMinSalary(){
+    private static Employee employeeMinSalary(){
         Employee result = employees[0];
         int minSalary = employees[0].getSalary();
         for (Employee employee : employees) {
@@ -71,7 +59,7 @@ public class Easy {
         return result;
     }
 
-    public static Employee employeeMaxSalary() {
+    private static Employee employeeMaxSalary() {
         Employee result = employees [0];
         int maxSalary = employees[0].getSalary();
         for (Employee employee : employees) {
@@ -82,13 +70,11 @@ public class Easy {
         }
         return result;
     }
-    public static void printList() {
+    private static void printList() {
+        System.out.println();
+        System.out.println("Список ФИО сотрудников:");
         for (Employee employee : employees) {
-            System.out.println(employee.getSurName());
+            System.out.println(employee.getSurName()+" "+ employee.getName() +" "+ employee.getMiddleName());
         }
-
     }
-
-
-
 }
